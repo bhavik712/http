@@ -1,32 +1,28 @@
-// request 
+// request
+
 // use of call back 
-const getPuzzle = (callback) =>{
+const getPuzzle = () => new Promise((resolve, reject) =>{
     const request = new XMLHttpRequest()
 
     request.addEventListener('readystatechange',(e)=>{
         if(e.target.readyState === 4 && e.target.status === 200 ){
         const data = JSON.parse(e.target.responseText);
-        callback(undefined,data.puzzle);
+        resolve(data.puzzle);
         }
         else if(e.target.readyState === 4){
             const error = 'there is some error';
-            callback(error, undefined);
+            reject(error);
         }
     })
 
     request.open('GET','https://puzzle.mead.io/puzzle');
 
     request.send()
-}
 
-getPuzzle((error,puzzle)=>{
-    if(error){
-        console.log(`error --> ${error}`);
-    }
-    else{
-        console.log(puzzle)
-    }
-})
+
+} )
+
+getPuzzle().then((puzzle)=>console.log(puzzle), (error)=>console.log(error));
 
 // const getPuzzleSync = () =>{
 //     const request = new XMLHttpRequest()
@@ -45,3 +41,4 @@ getPuzzle((error,puzzle)=>{
 // const puzzle = getPuzzleSync();
 // console.log(puzzle);
 
+    
