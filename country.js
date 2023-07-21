@@ -8,12 +8,23 @@
 // const countries = getCountries().then((data)=>{
 //     return data
 // });
-
-
 const countryCode = 'IN';
-const myCountryName = findCountryDetails(countryCode);
-showCountryDetails(countryCode,myCountryName);
-showAsianCountries();
+const countriesData = async ()=>{
+    const countries = await getCountries();
+
+    const countryName = findCountryDetails(countries,countryCode)
+    showCountryDetails(countryCode,countryName);
+
+    const asianCountriesData = findAsianCountries(countries);
+    showAsianCountriesNames(asianCountriesData);
+
+}
+
+
+
+countriesData();
+
+
 
 
 

@@ -11,31 +11,29 @@ const getCountries = async () => {
 
 }
 
-const findCountryDetails = async (countryCode) =>{
-    const countries = await getCountries();
+const findCountryDetails = (countries, countryCode) =>{
     const myCountry = countries.find((country)=>country.cca2 === countryCode)
     return myCountry.name.common;
 }
 
     
 const showCountryDetails = (countryCode, countryName)=>{
-    const codeEle = document.querySelector('#country-code');
-    const nameEle = document.querySelector('#country-name');
-    codeEle.textContent = countryCode;
-    countryName.then((countryName)=>{
-        nameEle.textContent = countryName;
-    }).catch((error)=>{
-        console.log(error)
-    })
+    const countryCodeEle = document.querySelector('#country-code');
+    const countryNameEle = document.querySelector('#country-name');
+    countryCodeEle.textContent = countryCode;
+    countryNameEle.textContent = countryName;
     
 }
 
-const showAsianCountries = async ()=>{
-    const countries = await getCountries();
+const findAsianCountries = (countries)=>{
     const asianCountries = countries.filter((country)=>country.region ==='Asia');
-    asianCountries.forEach((country)=>{
-        const countryNameEle = document.createElement('h2');
-        countryNameEle.textContent = country.name.common;
-        document.querySelector('body').appendChild(countryNameEle);
-        })
+    return asianCountries;
+}
+
+const showAsianCountriesNames = (asianCountriesData)=>{
+    asianCountriesData.forEach((country)=>{
+        const asianCountryNameEle = document.createElement('h2');
+        asianCountryNameEle.textContent = country.name.common;
+        document.querySelector('body').appendChild(asianCountryNameEle);
+    })
 }
