@@ -5,15 +5,15 @@
 //showing Asian countries by filtering countries arrray
 //defined every function in the country-functions file & called here.
 
-const countries = getCountries().then((data)=>{
-    return data
-});
+// const countries = getCountries().then((data)=>{
+//     return data
+// });
 
 
 const countryCode = 'IN';
-const myCountryName = findCountryDetails(countries,countryCode);
+const myCountryName = findCountryDetails(countryCode);
 showCountryDetails(countryCode,myCountryName);
-showAsianCountries(countries);
+showAsianCountries();
 
 
 
